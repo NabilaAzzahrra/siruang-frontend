@@ -88,7 +88,7 @@
     </div>
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
-        const socket = io("http://localhost:3000");
+        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id");
 
         socket.on('connect', () => {
             console.log('connected');
