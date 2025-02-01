@@ -164,7 +164,7 @@
                     <div class="font-extrabold text-red-500">SESI 1</div>
                     <div>08.00 - 09.40 WIB</div>
                 </div>
-                <div class="flex flex-wrap gap-4" id="rooms"></div>
+                <div class="flex flex-wrap gap-4 text-sm" id="rooms"></div>
             </div>
 
             <div class="flex flex-col lg:flex-row gap-3">
