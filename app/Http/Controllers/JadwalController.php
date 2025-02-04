@@ -208,54 +208,33 @@ class JadwalController extends Controller
             'file' => 'required|mimes:xlsx,xls'
         ]);
 
-        // Ambil file
         $file = $request->file('file');
-
-        // Baca file Excel
         $spreadsheet = IOFactory::load($file->getPathname());
         $sheet = $spreadsheet->getActiveSheet()->toArray();
 
-        // Loop melalui baris di Excel
+        $jadwalData = [];
+
         foreach (array_slice($sheet, 1) as $row) {
-
             $waktuAwal = substr($row[5], 0, 5);
-
             $sesiAwal = Sesi::where('waktu_sesi', 'like', $waktuAwal . '%')->first();
-            $sesiDua = $sesiAwal->id + 1;
-            //dd($sesiAwal->id);
 
+            if (!$sesiAwal) {
+                continue; // Skip jika sesi tidak ditemukan
+            }
+
+            $sesiDua = $sesiAwal->id + 1;
             $mataKuliah = $row[0] ?? null;
 
-            // Pastikan mata kuliah tidak null atau kosong
-            if (!empty($mataKuliah)) {
-                // Periksa apakah mata kuliah sudah ada
-                $matKul = MataKuliah::firstOrCreate(['mata_kuliah' => $mataKuliah, 'sks' => $row[1]]);
-            } else {
-                // Skip jika mata kuliah kosong
+            if (empty($mataKuliah)) {
                 continue;
             }
 
-            // Periksa apakah dosen sudah ada
-            $dosenName = $row[2];
-            $dosen = Dosen::firstOrCreate(['dosen' => $dosenName]);
-
-            // Periksa apakah kelas sudah ada
-            $kelasName = $row[3];
-            $kelas = Kelas::firstOrCreate(['kelas' => $kelasName], [
-                'program_studi' => $row[4]
-            ]);
-
-            // Periksa apakah ruang sudah ada
-            $ruangName = $row[6];
-            $ruang = Ruang::firstOrCreate(['ruang' => $ruangName]);
-
-            // Periksa apakah tahun akademik sudah ada
-            $tahunAkademikName = $row[7];
-            $tahunAkademik = TahunAkademik::firstOrCreate(['tahun_akademik' => $tahunAkademikName]);
-
-            // Periksa apakah hari sudah ada
-            $hariName = $row[8];
-            $hariEnglish = match ($hariName) {
+            $matKul = MataKuliah::firstOrCreate(['mata_kuliah' => $mataKuliah, 'sks' => $row[1]]);
+            $dosen = Dosen::firstOrCreate(['dosen' => $row[2]]);
+            $kelas = Kelas::firstOrCreate(['kelas' => $row[3]], ['program_studi' => $row[4]]);
+            $ruang = Ruang::firstOrCreate(['ruang' => $row[6]]);
+            $tahunAkademik = TahunAkademik::firstOrCreate(['tahun_akademik' => $row[7]]);
+            $hariEnglish = match ($row[8]) {
                 "MINGGU" => "SUNDAY",
                 "SENIN" => "MONDAY",
                 "SELASA" => "TUESDAY",
@@ -265,26 +244,30 @@ class JadwalController extends Controller
                 "SABTU" => "SATURDAY",
                 default => "",
             };
-
             $hari = Hari::firstOrCreate(['hari' => $hariEnglish]);
 
-            // Tambahkan data ke array untuk diinsert
+            if (!$matKul || !$dosen || !$kelas || !$ruang || !$tahunAkademik || !$hari) {
+                continue;
+            }
+
+            // Tambahkan data ke array untuk insert batch
+            $jadwalData[] = [
+                'id_mata_kuliah'    => $matKul->id,
+                'id_dosen'          => $dosen->id,
+                'id_kelas'          => $kelas->id,
+                'id_sesi'           => $sesiAwal->id,
+                'id_ruang'          => $ruang->id,
+                'id_tahun_akademik' => $tahunAkademik->id,
+                'id_hari'           => $hari->id,
+                'id_user'           => 1,
+                'semester'          => $row[9],
+                'id_jenis_kegiatan' => 0,
+                'status'            => 'AKTIF',
+                'verifikasi'        => 'JADWAL',
+            ];
+
             if ($row[1] > 2) {
                 $jadwalData[] = [
-                    'id_mata_kuliah'    => $matKul->id,
-                    'id_dosen'          => $dosen->id,
-                    'id_kelas'          => $kelas->id,
-                    'id_sesi'           => $sesiAwal->id,
-                    'id_ruang'          => $ruang->id,
-                    'id_tahun_akademik' => $tahunAkademik->id,
-                    'id_hari'           => $hari->id,
-                    'id_user'           => 1,
-                    'semester'          => $row[9],
-                    'id_jenis_kegiatan' => 0,
-                    'status'            => 'AKTIF',
-                    'verifikasi'        => 'JADWAL',
-                ];
-                $jadwalDataDua[] = [
                     'id_mata_kuliah'    => $matKul->id,
                     'id_dosen'          => $dosen->id,
                     'id_kelas'          => $kelas->id,
@@ -298,30 +281,13 @@ class JadwalController extends Controller
                     'status'            => 'AKTIF',
                     'verifikasi'        => 'JADWAL',
                 ];
-                if (!empty($jadwalData) && !empty($jadwalDataDua)) {
-                    JadwalRuangan::insert($jadwalData);
-                    JadwalRuangan::insert($jadwalDataDua);
-                }
-            } else {
-                $jadwalData[] = [
-                    'id_mata_kuliah'    => $matKul->id,
-                    'id_dosen'          => $dosen->id,
-                    'id_kelas'          => $kelas->id,
-                    'id_sesi'           => $sesiAwal->id,
-                    'id_ruang'          => $ruang->id,
-                    'id_tahun_akademik' => $tahunAkademik->id,
-                    'id_hari'           => $hari->id,
-                    'id_user'           => 1,
-                    'semester'          => $row[9],
-                    'id_jenis_kegiatan' => 0,
-                    'status'            => 'AKTIF',
-                    'verifikasi'        => 'JADWAL',
-                ];
             }
         }
 
-        // Insert data ke tabel jadwal_ruangan
-
+        // Insert semua data ke database dalam satu query
+        if (!empty($jadwalData)) {
+            JadwalRuangan::insert($jadwalData);
+        }
 
         return redirect()->back()->with('success', 'Data berhasil diimport!');
     }
