@@ -8,4 +8,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // server: {
+    //     host: '0.0.0.0', // Biarkan terbuka untuk diakses dari jaringan lain
+    //     port: 5173, // Sesuaikan jika perlu
+    //     strictPort: true,
+    //     hmr: {
+    //         host: '192.168.120.92', // Ganti dengan IP Address laptop
+    //     },
+    // },
 });

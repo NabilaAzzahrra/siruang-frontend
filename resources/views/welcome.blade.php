@@ -274,23 +274,23 @@
 
                         ${kegiatan === "PERGANTIAN" ?
                         `
-                                                    <tr>
-                                                        <td class="font-bold text-red-500">Mata Kuliah</td>
-                                                        <td class="pl-2 pr-2">:</td>
-                                                        <td>${mata_kuliah}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="font-bold text-red-500">Dosen</td>
-                                                        <td class="pl-2 pr-2">:</td>
-                                                        <td>${dosen}</td>
-                                                    </tr>
-                                                    `
+                                                                        <tr>
+                                                                            <td class="font-bold text-red-500">Mata Kuliah</td>
+                                                                            <td class="pl-2 pr-2">:</td>
+                                                                            <td>${mata_kuliah}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="font-bold text-red-500">Dosen</td>
+                                                                            <td class="pl-2 pr-2">:</td>
+                                                                            <td>${dosen}</td>
+                                                                        </tr>
+                                                                        `
                         :
                         `<tr>
-                                                        <td class="font-bold text-red-500">Penanggung Jawab</td>
-                                                        <td class="pl-2 pr-2">:</td>
-                                                        <td>${dosen}</td>
-                                                    </tr>`
+                                                                            <td class="font-bold text-red-500">Penanggung Jawab</td>
+                                                                            <td class="pl-2 pr-2">:</td>
+                                                                            <td>${dosen}</td>
+                                                                        </tr>`
                         }
                     </table>
                 </div>
@@ -377,7 +377,7 @@
     </script>
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
-        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id");
+        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id/");
 
         socket.on("connect", () => {
             console.log("connected");

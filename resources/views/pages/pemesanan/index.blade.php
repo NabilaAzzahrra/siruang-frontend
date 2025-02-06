@@ -64,7 +64,8 @@
                                                     <td>{{ $d->sesi->waktu_sesi }} WIB</td>
                                                     <td>{{ $d->ruang->ruang }}</td>
                                                     <td>{{ $d->tahun_akademik->tahun_akademik }}</td>
-                                                    <td>{{ $hariTranslation[strtoupper($d->hari->hari)] ?? $d->hari->hari }}</td>
+                                                    <td>{{ $hariTranslation[strtoupper($d->hari->hari)] ?? $d->hari->hari }}
+                                                    </td>
                                                     <td>{{ $d->semester }}</td>
                                                     <td>{{ $d->status }}</td>
                                                     <td>
@@ -92,7 +93,7 @@
     </div>
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
-        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id");
+        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id/");
 
         socket.on('connect', () => {
             console.log('connected');

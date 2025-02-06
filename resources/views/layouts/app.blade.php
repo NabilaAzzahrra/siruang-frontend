@@ -181,7 +181,7 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></scrip>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init();
     </script>
@@ -206,7 +206,7 @@
         $(".js-example-placeholder-single").select2({
             placeholder: "Pilih...",
             allowClear: true,
-            width: '100%' !important
+            width: '100%'
         });
     </script>
     @stack('scripts')

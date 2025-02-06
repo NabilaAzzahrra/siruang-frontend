@@ -35,9 +35,11 @@
                                 <div> DATA JADWAL</div>
                                 <div>
                                     <a href="{{ route('jadwal.create') }}" title="Add Data"
-                                        class="href bg-sky-100 hover:bg-sky-200 px-[9px] pb-[3px] rounded-xl h-10 w-10 text-md pt-[11px] text-sky-400 border-2 border-sky-200"><i class="fi fi-ss-add"></i></a>
+                                        class="href bg-sky-100 hover:bg-sky-200 px-[9px] pb-[3px] rounded-xl h-10 w-10 text-md pt-[11px] text-sky-400 border-2 border-sky-200"><i
+                                            class="fi fi-ss-add"></i></a>
                                     <button
-                                        onclick="return dataSterilkan('{{ $idTahunAkademik }}','{{ $semester }}')" title="Data Sterilize"
+                                        onclick="return dataSterilkan('{{ $idTahunAkademik }}','{{ $semester }}')"
+                                        title="Data Sterilize"
                                         class="bg-emerald-100 hover:bg-emerald-200 px-3 py-1 rounded-xl h-10 w-10 text-md pt-2 text-emerald-400 border-2 border-emerald-200"><i
                                             class="fi fi-ss-back-up"></i></button>
                                 </div>
@@ -117,7 +119,7 @@
     </div>
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
-        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id");
+        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id/");
 
         socket.on('connect', () => {
             console.log('connected');

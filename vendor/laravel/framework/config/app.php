@@ -57,7 +57,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'frontend_url' => env('FRONTEND_URL', 'https://siruang-api.politekniklp3i-tasikmalaya.ac.id'),
+    'frontend_url' => env('FRONTEND_URL', 'https://siruang-api.politekniklp3i-tasikmalaya.ac.id/'),
 
     'asset_url' => env('ASSET_URL'),
 

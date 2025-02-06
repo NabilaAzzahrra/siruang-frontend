@@ -93,8 +93,7 @@
             <h2 class="text-lg font-bold mb-4 bg-amber-100 p-2 rounded-xl">Pesan Ruangan</h2>
             <form id="bookingForm" action="{{ route('booking.store') }}" method="post" class="w-full">
                 <p id="modal-content"></p>
-                <button type="submit" id="submitBooking"
-                    class="mt-4 bg-sky-500 text-white px-4 py-2 rounded">
+                <button type="submit" id="submitBooking" class="mt-4 bg-sky-500 text-white px-4 py-2 rounded">
                     Simpan
                 </button>
                 <button onclick="closeModal()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded">Tutup</button>
@@ -135,23 +134,23 @@
 
                         ${kegiatan === "PERGANTIAN" ?
                         `
-                                                                                                            <tr>
-                                                                                                                <td class="font-bold text-red-500">Mata Kuliah</td>
-                                                                                                                <td class="pl-2 pr-2">:</td>
-                                                                                                                <td class="text-wrap">${mata_kuliah}</td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td class="font-bold text-red-500">Dosen</td>
-                                                                                                                <td class="pl-2 pr-2">:</td>
-                                                                                                                <td class="text-wrap">${dosen}</td>
-                                                                                                            </tr>
-                                                                                                            `
+                                                                                                                    <tr>
+                                                                                                                        <td class="font-bold text-red-500">Mata Kuliah</td>
+                                                                                                                        <td class="pl-2 pr-2">:</td>
+                                                                                                                        <td class="text-wrap">${mata_kuliah}</td>
+                                                                                                                    </tr>
+                                                                                                                    <tr>
+                                                                                                                        <td class="font-bold text-red-500">Dosen</td>
+                                                                                                                        <td class="pl-2 pr-2">:</td>
+                                                                                                                        <td class="text-wrap">${dosen}</td>
+                                                                                                                    </tr>
+                                                                                                                    `
                         :
                         `<tr>
-                                                                                                                <td class="font-bold text-red-500">Penanggung Jawab</td>
-                                                                                                                <td class="pl-2 pr-2">:</td>
-                                                                                                                <td class="text-wrap">${dosen}</td>
-                                                                                                            </tr>`
+                                                                                                                        <td class="font-bold text-red-500">Penanggung Jawab</td>
+                                                                                                                        <td class="pl-2 pr-2">:</td>
+                                                                                                                        <td class="text-wrap">${dosen}</td>
+                                                                                                                    </tr>`
                         }
                     </table>
                 </div>
@@ -406,7 +405,7 @@
     </script>
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
-        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id");
+        const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id/");
 
         socket.on("connect", () => {
             console.log("connected");
