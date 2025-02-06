@@ -221,10 +221,10 @@
                     <x-responsive-nav-link :href="route('konfigurasi.index')" :active="request()->routeIs('konfigurasi.index')">
                         {{ __('Konfigurasi') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('konfigurasi.index')" :active="request()->routeIs('konfigurasi.index')">
+                    <x-responsive-nav-link :href="route('tahunAkademik.index')" :active="request()->routeIs('tahunAkademik.index')">
                         {{ __('Tahun Akademik') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('konfigurasi.index')" :active="request()->routeIs('konfigurasi.index')">
+                    <x-responsive-nav-link :href="route('jenisKegiatan.index')" :active="request()->routeIs('jenisKegiatan.index')">
                         {{ __('Jenis Kegiatan') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('ruang.index')" :active="request()->routeIs('ruang.index')">

@@ -430,7 +430,7 @@
                     <input type="hidden" value="${id_ruang}" name="ruang">
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="mata_kuliah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mata Kuliah <span class="text-red-500">*</span></label>
-                        <select id="mata_kuliah" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[345px] m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
+                        <select id="mata_kuliah" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[332px] m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
                             <option value="">Pilih...</option>
                             @foreach ($mataKuliah as $k)
                                 <option value="{{ $k->id }}" data-sks="{{ $k->sks }}">{{ $k->mata_kuliah }}</option>
@@ -440,7 +440,7 @@
                     </div>
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen <span class="text-red-500">*</span></label>
-                        <select id="dosen" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[345px] m-6" name="dosen" data-placeholder="Pilih Dosen">
+                        <select id="dosen" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[332px] m-6" name="dosen" data-placeholder="Pilih Dosen">
                             <option value="">Pilih...</option>
                             @foreach ($dosen as $k)
                                 <option value="{{ $k->id }}">{{ $k->dosen }}</option>
@@ -451,7 +451,7 @@
                      @can('role-A')
                         <div class="lg:mb-5 mb-2 w-full">
                             <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas <span class="text-red-500">*</span></label>
-                            <select id="kelas" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[345px] m-6" name="kelas" data-placeholder="Pilih Kelas">
+                            <select id="kelas" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[332px] m-6" name="kelas" data-placeholder="Pilih Kelas">
                                 <option value="">Pilih...</option>
                                 @foreach ($kelas as $k)
                                     <option value="{{ $k->id }}">{{ $k->kelas }}</option>
@@ -468,7 +468,7 @@
                     @endcan
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kegiatan <span class="text-red-500">*</span></label>
-                        <select id="kegiatan" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[345px] m-6" name="jenis_kegiatan" data-placeholder="Pilih Jenis Kegiatan">
+                        <select id="kegiatan" class="js-example-placeholder-single js-states form-control lg:w-[585px] w-[332px] m-6" name="jenis_kegiatan" data-placeholder="Pilih Jenis Kegiatan">
                             <option value="">Pilih...</option>
                             @foreach ($jenisKegiatan as $k)
                                 <option value="{{ $k->id }}">{{ $k->kegiatan }}</option>
