@@ -181,7 +181,7 @@
             {{ $slot }}
         </main>
     </div>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></scrip>
     <script>
       AOS.init();
     </script>
@@ -200,12 +200,13 @@
     </script>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         // In your Javascript (external .js resource or <script> tag)
         $(".js-example-placeholder-single").select2({
             placeholder: "Pilih...",
             allowClear: true,
-            width: '100%'
+            width: '100%' !important
         });
     </script>
     @stack('scripts')
