@@ -174,7 +174,7 @@
                     <input type="hidden" value="${idRuang}" name="ruang">
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="mata_kuliah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mata Kuliah <span class="text-red-500">*</span></label>
-                        <select id="mata_kuliah" class="js-example-placeholder-single js-states lg:w-[585px] w-[332px] form-control m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
+                        <select id="mata_kuliah" class="js-example-placeholder-single js-states lg:w-[585px] w-[300px] form-control m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
                             <option value="">Pilih...</option>
                             @foreach ($mataKuliah as $k)
                                 <option value="{{ $k->id }}" data-sks="{{ $k->sks }}">{{ $k->mata_kuliah }}</option>
