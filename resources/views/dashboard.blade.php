@@ -9,11 +9,11 @@
     <div class="py-12 content pt-20 pl-24">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div>
-                <div class="lg:w-[300px] w-[240px] mb-5">
+                <div class="lg:w-[400px] w-[240px] mb-5">
                     <label for="tgl"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
                     <input type="date" id="tgl" name="tgl"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Masukan Tanggal Pakai disini ..." value="{{ date('Y-m-d') }}"
                         onchange="redirectToPage(this.value)" />
                 </div>
@@ -174,7 +174,7 @@
                     <input type="hidden" value="${idRuang}" name="ruang">
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="mata_kuliah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mata Kuliah <span class="text-red-500">*</span></label>
-                        <select id="mata_kuliah" class="js-example-placeholder-single js-states lg:w-[300px] w-[280px] form-control m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
+                        <select id="mata_kuliah" class="js-example-placeholder-single js-states lg:w-[400px] w-[280px] form-control m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
                             <option value="">Pilih...</option>
                             @foreach ($mataKuliah as $k)
                                 <option value="{{ $k->id }}" data-sks="{{ $k->sks }}">{{ $k->mata_kuliah }}</option>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen <span class="text-red-500">*</span></label>
-                        <select id="dosen" class="js-example-placeholder-single js-states form-control lg:w-[300px] w-[280px] m-6" name="dosen" data-placeholder="Pilih Dosen">
+                        <select id="dosen" class="js-example-placeholder-single js-states form-control lg:w-[400px] w-[280px] m-6" name="dosen" data-placeholder="Pilih Dosen">
                             <option value="">Pilih...</option>
                             @foreach ($dosen as $k)
                                 <option value="{{ $k->id }}">{{ $k->dosen }}</option>
@@ -195,7 +195,7 @@
                     @can('role-A')
                         <div class="lg:mb-5 mb-2 w-full">
                             <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas <span class="text-red-500">*</span></label>
-                            <select id="kelas" class="js-example-placeholder-single js-states form-control lg:w-[300px] w-[280px] m-6" name="kelas" data-placeholder="Pilih Kelas">
+                            <select id="kelas" class="js-example-placeholder-single js-states form-control lg:w-[400px] w-[280px] m-6" name="kelas" data-placeholder="Pilih Kelas">
                                 <option value="">Pilih...</option>
                                 @foreach ($kelas as $k)
                                     <option value="{{ $k->id }}">{{ $k->kelas }}</option>
@@ -207,12 +207,12 @@
                     @can('role-U')
                         <div class="lg:mb-5 mb-2 w-full" hidden>
                             <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas</label>
-                            <input type="text" id="kelas" name="kelas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $id_kelas->id }}" />
+                            <input type="text" id="kelas" name="kelas" class="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ $id_kelas->id }}" />
                         </div>
                     @endcan
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kegiatan <span class="text-red-500">*</span></label>
-                        <select id="kegiatan" class="js-example-placeholder-single js-states form-control lg:w-[300px] w-[280px] m-6" name="jenis_kegiatan" data-placeholder="Pilih Jenis Kegiatan">
+                        <select id="kegiatan" class="js-example-placeholder-single js-states form-control lg:w-[400px] w-[280px] m-6" name="jenis_kegiatan" data-placeholder="Pilih Jenis Kegiatan">
                             <option value="">Pilih...</option>
                             @foreach ($jenisKegiatan as $k)
                                 <option value="{{ $k->id }}">{{ $k->kegiatan }}</option>
@@ -222,11 +222,11 @@
                     </div>
                     <div class="lg:mb-5 mb-2 w-full" hidden>
                         <label for="tgl_pakai" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Pakai</label>
-                        <input type="date" id="tgl_pakai" name="tgl_pakai" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan Tanggal Pakai disini ..." value="{{ date('Y-m-d') }}"/>
+                        <input type="date" id="tgl_pakai" name="tgl_pakai" class="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan Tanggal Pakai disini ..." value="{{ date('Y-m-d') }}"/>
                     </div>
                     <div class="lg:mb-5 mb-5 w-full">
                         <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No HP</label>
-                        <input type="number" id="no_hp" name="no_hp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan No HP disini ..." />
+                        <input type="number" id="no_hp" name="no_hp" class="bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Masukan No HP disini ..." />
                         <p id="error-no_hp" class="mt-2 text-sm text-red-500 hidden">No HP wajib diisi.</p>
                     </div>
             `;
