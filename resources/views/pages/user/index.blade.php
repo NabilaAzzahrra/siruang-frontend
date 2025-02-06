@@ -32,10 +32,10 @@
                                     </div>
                                     <div class="mb-5">
                                         <label for="email"
-                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                        <input type="email" name="email"
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                        <input type="text" name="email"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Masukan Email disini ..." required />
+                                            placeholder="Masukan Username disini ..." required />
                                     </div>
                                     <div class="mb-5">
                                         <label for="password"
@@ -77,8 +77,9 @@
                                             <tr>
                                                 <th class="w-7">No.</th>
                                                 <th>Nama Lengkap</th>
-                                                <th>Email</th>
+                                                <th>Username</th>
                                                 <th>Role</th>
+                                                <th>Password</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -100,6 +101,7 @@
 
                                                     @endphp
                                                     <td>{{ $role }}</td>
+                                                    <td>{{ $d->pw }}</td>
                                                     <td>
                                                         <button type="button" data-id="{{ $d->id }}"
                                                             data-modal-target="sourceModal"

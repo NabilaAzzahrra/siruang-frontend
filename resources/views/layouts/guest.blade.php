@@ -32,9 +32,10 @@
                 Tempat yang tepat untuk ide-ide hebat.
             </div>
         </div>
-        <div class="bg-gray-100 mt-4 lg:-ml-[10px] ml-[-10px] lg:mr-[10px] mr-[10px] lg:h-20 rounded-b-3xl lg:mt-[245px] lg:p-6 p-2 lg:pl-12 flex text-center items-center justify-start box">
-            <span class="lg:ml-6 text-xs lg:text-xl">View More Application Web at Politeknik LP3I Tasikmalaya, </span> <a
-                href="https://politekniklp3i-tasikmalaya.ac.id/catalog" target="_blank"
+        <div
+            class="bg-gray-100 mt-4 lg:-ml-[10px] ml-[-10px] lg:mr-[10px] mr-[10px] lg:h-20 rounded-b-3xl lg:mt-[245px] lg:p-6 p-2 lg:pl-12 flex text-center items-center justify-start box">
+            <span class="lg:ml-6 text-xs lg:text-xl">View More Application Web at Politeknik LP3I Tasikmalaya, </span>
+            <a href="https://politekniklp3i-tasikmalaya.ac.id/catalog" target="_blank"
                 class="text-sky-500 ml-1 font-bold mr-2 lg:mr-0 hover:text-sky-600 text-xs lg:text-xl">in here</a>
         </div>
     </div>
@@ -53,19 +54,29 @@
 
                 <!-- Email Address -->
                 <div class="box-email">
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" class="border-2 border-gray-100 p-2 h-10 mt-1 w-[300px]" type="email" name="email"
-                        :value="old('email')" required autofocus autocomplete="username" />
+                    <x-input-label for="email" :value="__('Username')" />
+
+                    <x-text-input id="email" class="border-2 border-gray-100 p-2 h-10 mt-1 w-[300px]" type="text"
+                        name="email" :value="old('email')" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
                 <!-- Password -->
                 <div class="mt-4 box-password">
                     <x-input-label for="password" :value="__('Password')" />
-
-                    <x-text-input id="password" class="border-2 p-2 border-gray-100 h-10 mt-1 w-full" type="password" name="password" required
-                        autocomplete="current-password" />
-
+                    <div class="relative">
+                        <x-text-input id="password" class="border-2 p-2 border-gray-100 h-10 mt-1 w-full"
+                            type="password" name="password" required autocomplete="current-password" />
+                        <button type="button" id="togglePassword"
+                            class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                            <svg id="eyeIcon" class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 3a7 7 0 100 14 7 7 0 000-14zM2 10a8 8 0 0115.9-1.1 3.8 3.8 0 000 2.2A8 8 0 012 10zm4-1a6 6 0 018 0c-.7.8-1.5 1.5-2.3 2.2A6 6 0 016 9zm1.4 3.7A4.1 4.1 0 0010 14a4.1 4.1 0 002.6-.8A3.3 3.3 0 0010 11c-1.1 0-2 .6-2.6 1.7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 
@@ -130,6 +141,21 @@
         );
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script>
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+
+            // Toggle password visibility
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.setAttribute('fill', '#4A5568'); // Change icon color when visible
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.setAttribute('fill', 'currentColor'); // Revert icon color when hidden
+            }
+        });
+    </script>
 </body>
 
 </html>

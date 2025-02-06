@@ -3,7 +3,8 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <div class="flex flex-col lg:flex-row items-center justify-center gap-12 bg-red-500 h-screen">
-        <div class="custom-bg border-2 border-gray-100 bg-gray-100 rounded-3xl lg:w-[900px] lg:h-[920px] lg:mr-[325px] lg:mt-4">
+        <div
+            class="custom-bg border-2 border-gray-100 bg-gray-100 rounded-3xl lg:w-[900px] lg:h-[920px] lg:mr-[325px] lg:mt-4">
             <div class="flex items-end just lg:ml-12 lg:mt-12 box">
                 <img src="{{ url('img/tagline.svg') }}" alt="" srcset="">
             </div>
@@ -16,8 +17,8 @@
                 </div>
                 {{-- <span class="-mt-24 z-0 -mr-10">Copyright © 2024 Politeknik LP3I Kampus Tasikmalaya</span> --}}
             </div>
-            <div
-                class="bg-gray-100 lg:-ml-3 lg:mr-2 h-20 rounded-b-3xl mt-[245px] lg:p-6 lg:pl-12 flex text-center items-center justify-start box" hidden>
+            <div class="bg-gray-100 lg:-ml-3 lg:mr-2 h-20 rounded-b-3xl mt-[245px] lg:p-6 lg:pl-12 flex text-center items-center justify-start box"
+                hidden>
                 <span class="lg:ml-6">View More Application Web at Politeknik LP3I Tasikmalaya, </span> <a
                     href="https://politekniklp3i-tasikmalaya.ac.id/catalog" target="_blank"
                     class="text-sky-500 ml-1 font-bold hover:text-sky-600">in here</a>
@@ -38,8 +39,8 @@
 
                     <!-- Email Address -->
                     <div class="box-email">
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
+                        <x-input-label for="email" :value="__('Username')" />
+                        <x-text-input id="email" class="block mt-1 w-full" type="text" name="email"
                             :value="old('email')" required autofocus autocomplete="username" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
