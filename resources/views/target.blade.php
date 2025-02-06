@@ -6,7 +6,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
     </x-slot>
 
-    <div class="py-12 content  pt-20 pl-24">
+    <div class="py-12 content  pt-20 lg:pl-24 pl-16">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div>
                 <div class="lg:w-[300px] w-[240px] mb-5">
