@@ -9,7 +9,7 @@
     <div class="py-12 content pt-20 pl-24">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div>
-                <div class="lg:w-[380px] w-[240px] mb-5">
+                <div class="lg:w-[300px] w-[240px] mb-5">
                     <label for="tgl"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal</label>
                     <input type="date" id="tgl" name="tgl"
@@ -75,11 +75,11 @@
                     <div>Ruangan Terdapat Jadwal</div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-amber-380 rounded-full"></div>
+                    <div class="w-10 h-10 bg-amber-400 rounded-full"></div>
                     <div>Ruangan Telah di pesan</div>
                 </div>
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-emerald-380 rounded-full"></div>
+                    <div class="w-10 h-10 bg-emerald-400 rounded-full"></div>
                     <div>Ruangan Tersedia</div>
                 </div>
             </div>
@@ -174,7 +174,7 @@
                     <input type="hidden" value="${idRuang}" name="ruang">
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="mata_kuliah" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mata Kuliah <span class="text-red-500">*</span></label>
-                        <select id="mata_kuliah" class="js-example-placeholder-single js-states lg:w-[380px] w-[280px] form-control m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
+                        <select id="mata_kuliah" class="js-example-placeholder-single js-states lg:w-[385px] w-[280px] form-control m-6" name="mata_kuliah" data-placeholder="Pilih Mata Kuliah">
                             <option value="">Pilih...</option>
                             @foreach ($mataKuliah as $k)
                                 <option value="{{ $k->id }}" data-sks="{{ $k->sks }}">{{ $k->mata_kuliah }}</option>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="dosen" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Dosen <span class="text-red-500">*</span></label>
-                        <select id="dosen" class="js-example-placeholder-single js-states form-control lg:w-[380px] w-[280px] m-6" name="dosen" data-placeholder="Pilih Dosen">
+                        <select id="dosen" class="js-example-placeholder-single js-states form-control lg:w-[385px] w-[280px] m-6" name="dosen" data-placeholder="Pilih Dosen">
                             <option value="">Pilih...</option>
                             @foreach ($dosen as $k)
                                 <option value="{{ $k->id }}">{{ $k->dosen }}</option>
@@ -195,7 +195,7 @@
                     @can('role-A')
                         <div class="lg:mb-5 mb-2 w-full">
                             <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas <span class="text-red-500">*</span></label>
-                            <select id="kelas" class="js-example-placeholder-single js-states form-control lg:w-[380px] w-[280px] m-6" name="kelas" data-placeholder="Pilih Kelas">
+                            <select id="kelas" class="js-example-placeholder-single js-states form-control lg:w-[385px] w-[280px] m-6" name="kelas" data-placeholder="Pilih Kelas">
                                 <option value="">Pilih...</option>
                                 @foreach ($kelas as $k)
                                     <option value="{{ $k->id }}">{{ $k->kelas }}</option>
@@ -212,7 +212,7 @@
                     @endcan
                     <div class="lg:mb-5 mb-2 w-full">
                         <label for="kelas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Kegiatan <span class="text-red-500">*</span></label>
-                        <select id="kegiatan" class="js-example-placeholder-single js-states form-control lg:w-[380px] w-[280px] m-6" name="jenis_kegiatan" data-placeholder="Pilih Jenis Kegiatan">
+                        <select id="kegiatan" class="js-example-placeholder-single js-states form-control lg:w-[385px] w-[280px] m-6" name="jenis_kegiatan" data-placeholder="Pilih Jenis Kegiatan">
                             <option value="">Pilih...</option>
                             @foreach ($jenisKegiatan as $k)
                                 <option value="{{ $k->id }}">{{ $k->kegiatan }}</option>
@@ -437,8 +437,8 @@
                     response.satu[i].verifikasi === "JADWAL" && response.satu[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
                         : response.satu[i].verifikasi === "BOOKED" && response.satu[i].status === "AKTIF"
-                        ? "bg-amber-380 text-black cursor-pointer"
-                        : "bg-emerald-380 text-black cursor-pointer"
+                        ? "bg-amber-400 text-black cursor-pointer"
+                        : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
                         response.satu[i].nama_ruang
                     }
@@ -458,8 +458,8 @@
                     response.dua[i].verifikasi === "JADWAL" && response.dua[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
                         : response.dua[i].verifikasi === "BOOKED" && response.dua[i].status === "AKTIF"
-                        ? "bg-amber-380 text-black cursor-pointer"
-                        : "bg-emerald-380 text-black cursor-pointer"
+                        ? "bg-amber-400 text-black cursor-pointer"
+                        : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl  mb-4">${
                         response.dua[i].nama_ruang
                     }
@@ -479,8 +479,8 @@
                     response.tiga[i].verifikasi === "JADWAL" && response.tiga[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
                         : response.tiga[i].verifikasi === "BOOKED" && response.tiga[i].status === "AKTIF"
-                        ? "bg-amber-380 text-black cursor-pointer"
-                        : "bg-emerald-380 text-black cursor-pointer"
+                        ? "bg-amber-400 text-black cursor-pointer"
+                        : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl  mb-4">${
                         response.tiga[i].nama_ruang
                     }
@@ -500,8 +500,8 @@
                     response.empat[i].verifikasi === "JADWAL" && response.empat[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
                         : response.empat[i].verifikasi === "BOOKED" && response.empat[i].status === "AKTIF"
-                        ? "bg-amber-380 text-black cursor-pointer"
-                        : "bg-emerald-380 text-black cursor-pointer"
+                        ? "bg-amber-400 text-black cursor-pointer"
+                        : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
                     response.empat[i].nama_ruang
                     }
@@ -521,8 +521,8 @@
                     response.lima[i].verifikasi === "JADWAL" && response.lima[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
                         : response.lima[i].verifikasi === "BOOKED" && response.lima[i].status === "AKTIF"
-                        ? "bg-amber-380 text-black cursor-pointer"
-                        : "bg-emerald-380 text-black cursor-pointer"
+                        ? "bg-amber-400 text-black cursor-pointer"
+                        : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
                     response.lima[i].nama_ruang
                     }
@@ -542,8 +542,8 @@
                     response.enam[i].verifikasi === "JADWAL" && response.enam[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
                         : response.enam[i].verifikasi === "BOOKED" && response.enam[i].status === "AKTIF"
-                        ? "bg-amber-380 text-black cursor-pointer"
-                        : "bg-emerald-380 text-black cursor-pointer"
+                        ? "bg-amber-400 text-black cursor-pointer"
+                        : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
                         response.enam[i].nama_ruang
                     }
