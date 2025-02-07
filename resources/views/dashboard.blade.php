@@ -134,23 +134,23 @@
 
                         ${kegiatan === "PERGANTIAN" ?
                         `
-                                                                                                                        <tr>
-                                                                                                                            <td class="font-bold text-red-500">Mata Kuliah</td>
-                                                                                                                            <td class="pl-2 pr-2">:</td>
-                                                                                                                            <td class="text-wrap">${mata_kuliah}</td>
-                                                                                                                        </tr>
-                                                                                                                        <tr>
-                                                                                                                            <td class="font-bold text-red-500">Dosen</td>
-                                                                                                                            <td class="pl-2 pr-2">:</td>
-                                                                                                                            <td class="text-wrap">${dosen}</td>
-                                                                                                                        </tr>
-                                                                                                                        `
+                                                                                                                            <tr>
+                                                                                                                                <td class="font-bold text-red-500">Mata Kuliah</td>
+                                                                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                                                                <td class="text-wrap">${mata_kuliah}</td>
+                                                                                                                            </tr>
+                                                                                                                            <tr>
+                                                                                                                                <td class="font-bold text-red-500">Dosen</td>
+                                                                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                                                                <td class="text-wrap">${dosen}</td>
+                                                                                                                            </tr>
+                                                                                                                            `
                         :
                         `<tr>
-                                                                                                                            <td class="font-bold text-red-500">Penanggung Jawab</td>
-                                                                                                                            <td class="pl-2 pr-2">:</td>
-                                                                                                                            <td class="text-wrap">${dosen}</td>
-                                                                                                                        </tr>`
+                                                                                                                                <td class="font-bold text-red-500">Penanggung Jawab</td>
+                                                                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                                                                <td class="text-wrap">${dosen}</td>
+                                                                                                                            </tr>`
                         }
                     </table>
                 </div>
@@ -584,14 +584,32 @@
                 title: 'Berhasil!',
                 text: "{{ session('message_insert') }}",
                 icon: 'success',
-                confirmButtonText: 'OK',
-                allowOutsideClick: false,
+                confirmButtonText: 'OK (5)', // Mulai dengan teks hitung mundur
+                allowOutsideClick: false, // Modal tidak bisa ditutup kecuali klik OK
                 didOpen: () => {
                     sound.play();
+
+                    // Ambil tombol OK
+                    const swalBtn = Swal.getConfirmButton();
+                    swalBtn.disabled = true; // Disable tombol di awal
+
+                    let countdown = 5; // Waktu hitung mundur
+
+                    // Update teks tombol setiap detik
+                    const timer = setInterval(() => {
+                        countdown--;
+                        swalBtn.textContent = `OK (${countdown})`; // Update teks tombol
+
+                        if (countdown <= 0) {
+                            clearInterval(timer); // Hentikan interval jika sudah 0
+                            swalBtn.textContent = "OK"; // Kembalikan teks ke "OK"
+                            swalBtn.disabled = false; // Aktifkan tombol
+                        }
+                    }, 1000);
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // sound.play(); // Putar suara saat klik "OK"
+                    // Aksi setelah tombol OK diklik
                 }
             });
         </script>
