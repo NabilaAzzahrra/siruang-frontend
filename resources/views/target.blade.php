@@ -643,17 +643,50 @@
                 volume: 0.5 // Atur volume
             });
 
+            // Swal.fire({
+            //     title: 'Berhasil!',
+            //     text: "{{ session('message_insert') }}",
+            //     icon: 'success',
+            //     confirmButtonText: 'OK',
+            //     didOpen: () => {
+            //         sound.play(); // Putar suara saat alert muncul
+            //     }
+            // }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         // sound.play(); // Putar suara saat klik "OK"
+            //         reloadALL();
+            //     }
+            // });
             Swal.fire({
                 title: 'Berhasil!',
                 text: "{{ session('message_insert') }}",
                 icon: 'success',
-                confirmButtonText: 'OK',
+                confirmButtonText: 'OK (5)', // Mulai dengan teks hitung mundur
+                allowOutsideClick: false, // Modal tidak bisa ditutup kecuali klik OK
                 didOpen: () => {
-                    sound.play(); // Putar suara saat alert muncul
+                    sound.play();
+
+                    // Ambil tombol OK
+                    const swalBtn = Swal.getConfirmButton();
+                    swalBtn.disabled = true; // Disable tombol di awal
+
+                    let countdown = 5; // Waktu hitung mundur
+
+                    // Update teks tombol setiap detik
+                    const timer = setInterval(() => {
+                        countdown--;
+                        swalBtn.textContent = `OK (${countdown})`; // Update teks tombol
+
+                        if (countdown <= 0) {
+                            clearInterval(timer); // Hentikan interval jika sudah 0
+                            swalBtn.textContent = "OK"; // Kembalikan teks ke "OK"
+                            swalBtn.disabled = false; // Aktifkan tombol
+                        }
+                    }, 1000);
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // sound.play(); // Putar suara saat klik "OK"
+                    // Aksi setelah tombol OK diklik
                     reloadALL();
                 }
             });
