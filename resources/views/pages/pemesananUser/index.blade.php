@@ -127,7 +127,7 @@
                             if (result.isConfirmed) {
                                 location.reload();
                             }
-                        });;
+                        });
                     })
                     .catch(function(error) {
                         // Handle error

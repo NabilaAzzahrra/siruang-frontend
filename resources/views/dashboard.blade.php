@@ -134,23 +134,23 @@
 
                         ${kegiatan === "PERGANTIAN" ?
                         `
-                                                                                                                    <tr>
-                                                                                                                        <td class="font-bold text-red-500">Mata Kuliah</td>
-                                                                                                                        <td class="pl-2 pr-2">:</td>
-                                                                                                                        <td class="text-wrap">${mata_kuliah}</td>
-                                                                                                                    </tr>
-                                                                                                                    <tr>
-                                                                                                                        <td class="font-bold text-red-500">Dosen</td>
-                                                                                                                        <td class="pl-2 pr-2">:</td>
-                                                                                                                        <td class="text-wrap">${dosen}</td>
-                                                                                                                    </tr>
-                                                                                                                    `
+                                                                                                                        <tr>
+                                                                                                                            <td class="font-bold text-red-500">Mata Kuliah</td>
+                                                                                                                            <td class="pl-2 pr-2">:</td>
+                                                                                                                            <td class="text-wrap">${mata_kuliah}</td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td class="font-bold text-red-500">Dosen</td>
+                                                                                                                            <td class="pl-2 pr-2">:</td>
+                                                                                                                            <td class="text-wrap">${dosen}</td>
+                                                                                                                        </tr>
+                                                                                                                        `
                         :
                         `<tr>
-                                                                                                                        <td class="font-bold text-red-500">Penanggung Jawab</td>
-                                                                                                                        <td class="pl-2 pr-2">:</td>
-                                                                                                                        <td class="text-wrap">${dosen}</td>
-                                                                                                                    </tr>`
+                                                                                                                            <td class="font-bold text-red-500">Penanggung Jawab</td>
+                                                                                                                            <td class="pl-2 pr-2">:</td>
+                                                                                                                            <td class="text-wrap">${dosen}</td>
+                                                                                                                        </tr>`
                         }
                     </table>
                 </div>
@@ -577,7 +577,7 @@
         <script>
             const sound = new Howl({
                 src: ['{{ url('sound/success.mp3') }}'],
-                volume: 0.5 // Atur volume
+                volume: 0.5
             });
 
             Swal.fire({
@@ -585,8 +585,9 @@
                 text: "{{ session('message_insert') }}",
                 icon: 'success',
                 confirmButtonText: 'OK',
+                allowOutsideClick: false,
                 didOpen: () => {
-                    sound.play(); // Putar suara saat alert muncul
+                    sound.play();
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
