@@ -12,7 +12,7 @@
                     <div class="bg-white w-full dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <div
-                                class="lg:p-6 p-2 text-sm lg:text-lg text-center lg:text-left bg-amber-300 rounded-xl font-bold flex justify-between">
+                                class="lg:p-2 p-2 lg:pl-4 text-sm lg:text-lg text-center lg:text-left bg-amber-100 lg:bg-amber-50 rounded-xl font-bold flex items-center justify-between">
                                 <div> DATA PEMESANAN</div>
                             </div>
                             <div class="flex justify-center">
