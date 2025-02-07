@@ -39,11 +39,11 @@
                                                     $hariTranslation = [
                                                         'SUNDAY' => 'MINGGU',
                                                         'MONDAY' => 'SENIN',
-                                                        'TUESDAY ' => 'SELASA',
-                                                        'WEDNESDAY ' => 'RABU',
-                                                        'THURSDAY ' => 'KAMIS',
+                                                        'TUESDAY' => 'SELASA',
+                                                        'WEDNESDAY' => 'RABU',
+                                                        'THURSDAY' => 'KAMIS',
                                                         'FRIDAY' => 'JUMAT',
-                                                        'SATURDAY ' => 'SABTU',
+                                                        'SATURDAY' => 'SABTU',
                                                     ];
                                                 @endphp
                                                 <tr>

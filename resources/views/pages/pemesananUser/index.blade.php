@@ -123,7 +123,11 @@
                             text: "{{ session('message_delete') }}",
                             icon: 'error',
                             confirmButtonText: 'OK'
-                        });
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });;
                     })
                     .catch(function(error) {
                         // Handle error
