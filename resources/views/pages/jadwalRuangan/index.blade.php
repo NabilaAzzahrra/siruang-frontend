@@ -101,9 +101,15 @@
                                                             <i class="fas fa-edit"></i>
                                                         </button>
                                                         <button
+                                                            onclick="return dataStatus('{{ $d->id }}','{{ $d->mataKuliah->mata_kuliah }}')"
+                                                            class="bg-amber-50 hover:bg-amber-100 text-amber-950 px-3 py-1 rounded-xl h-10 w-10 text-xs border-2 border-amber-100">
+                                                            <i class="fi fi-sr-settings"></i>
+                                                        </button>
+                                                        <button
                                                             onclick="return dataDelete('{{ $d->id }}','{{ $d->mataKuliah->mata_kuliah }}')"
                                                             class="bg-red-50 hover:bg-red-100 px-3 py-1 text-amber-950 rounded-xl h-10 w-10 text-xs border-2 border-red-100"><i
-                                                                class="fas fa-trash"></i></button>
+                                                                class="fas fa-trash"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
