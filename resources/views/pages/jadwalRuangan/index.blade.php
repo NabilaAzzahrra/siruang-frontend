@@ -95,15 +95,19 @@
                                                     <td>{{ $d->semester }}</td>
                                                     <td>{{ $d->status }}</td>
                                                     <td>
-                                                        <button
-                                                            onclick="return dataStatus('{{ $d->id }}','{{ $d->mataKuliah->mata_kuliah }}')"
+                                                        <button type="button" data-id="{{ $d->id }}"
+                                                            data-modal-target="sourceModal"
+                                                            data-id_sesi="{{ $d->id_sesi }}"
+                                                            data-id_ruang="{{ $d->id_ruang }}"
+                                                            data-id_hari="{{ $d->id_hari }}"
+                                                            onclick="editSourceModal(this)"
                                                             class="bg-amber-50 hover:bg-amber-100 text-amber-950 px-3 py-1 rounded-xl h-10 w-10 text-xs border-2 border-amber-100">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
                                                         <button
                                                             onclick="return dataStatus('{{ $d->id }}','{{ $d->mataKuliah->mata_kuliah }}')"
                                                             class="bg-amber-50 hover:bg-amber-100 text-amber-950 px-3 py-1 rounded-xl h-10 w-10 text-xs border-2 border-amber-100">
-                                                            <i class="fi fi-sr-settings"></i>
+                                                            <i class="fa-solid fa-gear"></i>
                                                         </button>
                                                         <button
                                                             onclick="return dataDelete('{{ $d->id }}','{{ $d->mataKuliah->mata_kuliah }}')"
@@ -123,6 +127,82 @@
             </div>
         </div>
     </div>
+    <div class="fixed inset-0 flex items-center justify-center z-50 hidden" id="sourceModal">
+        <div class="fixed inset-0 bg-black opacity-50"></div>
+        <div class="fixed inset-0 flex items-center justify-center">
+            <div class="w-full md:w-1/4 relative bg-white rounded-lg shadow mx-5">
+                <div class="flex items-start justify-between p-4 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900" id="title_source">
+                        Tambah Sumber Database
+                    </h3>
+                    <button type="button" onclick="sourceModalClose(this)" data-modal-target="sourceModal"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+                        data-modal-hide="defaultModal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <form method="POST" id="formSourceModal">
+                    @csrf
+                    <div class="flex flex-col p-4 space-y-6">
+                        <div class="">
+                            <label for="id_sesi"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sesi
+                                <span class="text-red-500">*</span></label>
+                            <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                name="id_sesi" data-placeholder="Sesi">
+                                <option value="">Pilih...</option>
+                                @foreach ($sesi as $t)
+                                    <option value="{{ $t->id }}">{{ $t->sesi }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="">
+                            <label for="id_ruang"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ruang
+                                <span class="text-red-500">*</span></label>
+                            <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                name="id_ruang" data-placeholder="Ruang">
+                                <option value="">Pilih...</option>
+                                @foreach ($ruang as $t)
+                                    <option value="{{ $t->id }}">{{ $t->ruang }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @php
+                            $hariTranslation = [
+                                'SUNDAY' => 'MINGGU',
+                                'MONDAY' => 'SENIN',
+                                'TUESDAY' => 'SELASA',
+                                'WEDNESDAY' => 'RABU',
+                                'THURSDAY' => 'KAMIS',
+                                'FRIDAY' => 'JUMAT',
+                                'SATURDAY' => 'SABTU',
+                            ];
+                        @endphp
+                        <div class="">
+                            <label for="id_hari"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hari
+                                <span class="text-red-500">*</span></label>
+                            <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                name="id_hari" data-placeholder="Hari">
+                                <option value="">Pilih...</option>
+                                @foreach ($hari as $t)
+                                    <option value="{{ $t->id }}">{{ $hariTranslation[strtoupper($t->hari)] ?? $t->hari }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
+                        <button type="submit" id="formSourceButton"
+                            class="bg-emerald-50 m-2 w-40 h-10 rounded-xl hover:bg-emerald-100 border-2 border-emerald-100">Simpan</button>
+                        <button type="button" data-modal-target="sourceModal" onclick="sourceModalClose(this)"
+                            class="bg-red-50 m-2 w-40 h-10 rounded-xl hover:shadow-lg hover:bg-red-100 border-2 border-red-100">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
     <script>
         const socket = io("https://siruang-api.politekniklp3i-tasikmalaya.ac.id/");
@@ -145,6 +225,48 @@
         });
     </script>
     <script>
+        const editSourceModal = (button) => {
+            const formModal = document.getElementById('formSourceModal');
+            const modalTarget = button.dataset.modalTarget;
+            const id = button.dataset.id;
+            const id_sesi = button.dataset.id_sesi;
+            const id_ruang = button.dataset.id_ruang;
+            const id_hari = button.dataset.id_hari;
+            let url = "{{ route('jadwal.up', ':id') }}".replace(':id', id);
+            console.log(url);
+            let status = document.getElementById(modalTarget);
+            document.getElementById('title_source').innerText = `UPDATE JADWAL`;
+
+            let event = new Event('change');
+            document.querySelector('[name="id_sesi"]').value = id_sesi;
+            document.querySelector('[name="id_sesi"]').dispatchEvent(event);
+
+            document.querySelector('[name="id_ruang"]').value = id_ruang;
+            document.querySelector('[name="id_ruang"]').dispatchEvent(event);
+
+            document.querySelector('[name="id_hari"]').value = id_hari;
+            document.querySelector('[name="id_hari"]').dispatchEvent(event);
+
+            document.getElementById('formSourceButton').innerText = 'Simpan';
+            document.getElementById('formSourceModal').setAttribute('action', url);
+            let csrfToken = document.createElement('input');
+            csrfToken.setAttribute('type', 'hidden');
+            csrfToken.setAttribute('value', '{{ csrf_token() }}');
+            formModal.appendChild(csrfToken);
+
+            let methodInput = document.createElement('input');
+            methodInput.setAttribute('type', 'hidden');
+            methodInput.setAttribute('name', '_method');
+            methodInput.setAttribute('value', 'PATCH');
+            formModal.appendChild(methodInput);
+
+            status.classList.toggle('hidden');
+        }
+        const sourceModalClose = (button) => {
+            const modalTarget = button.dataset.modalTarget;
+            let status = document.getElementById(modalTarget);
+            status.classList.toggle('hidden');
+        }
         const dataSterilkan = async (id, mata_kuliah) => {
             let tanya = confirm(`Sterilkan jadwal`);
             if (tanya) {

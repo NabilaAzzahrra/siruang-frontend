@@ -274,23 +274,23 @@
 
                         ${kegiatan === "PERGANTIAN" ?
                         `
-                                                                        <tr>
-                                                                            <td class="font-bold text-red-500">Mata Kuliah</td>
-                                                                            <td class="pl-2 pr-2">:</td>
-                                                                            <td>${mata_kuliah}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="font-bold text-red-500">Dosen</td>
-                                                                            <td class="pl-2 pr-2">:</td>
-                                                                            <td>${dosen}</td>
-                                                                        </tr>
-                                                                        `
+                                                                            <tr>
+                                                                                <td class="font-bold text-red-500">Mata Kuliah</td>
+                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                <td>${mata_kuliah}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="font-bold text-red-500">Dosen</td>
+                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                <td>${dosen}</td>
+                                                                            </tr>
+                                                                            `
                         :
                         `<tr>
-                                                                            <td class="font-bold text-red-500">Penanggung Jawab</td>
-                                                                            <td class="pl-2 pr-2">:</td>
-                                                                            <td>${dosen}</td>
-                                                                        </tr>`
+                                                                                <td class="font-bold text-red-500">Penanggung Jawab</td>
+                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                <td>${dosen}</td>
+                                                                            </tr>`
                         }
                     </table>
                 </div>
@@ -423,7 +423,7 @@
                     response.dua[i].verifikasi === "JADWAL"
                         ? `onclick="infoRoom('${response.dua[i].id}','${response.dua[i].kelas}','${response.dua[i].program_studi}','${response.dua[i].mata_kuliah}','${response.dua[i].dosen}')"`
                         : response.dua[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.dua[i].id}','${response.dua[i].kelas}','${response.dua[i].program_studi}','${response.dua[i].jenis_kegiatan}','${response.dua[i].dosen}','${response.dua[i].mata_kuliah}')"`
+                        ? `onclick="infoBookingRoom('${response.dua[i].id}','${response.dua[i].kelas}','${response.dua[i].program_studi}','${response.dua[i].kegiatan}','${response.dua[i].dosen}','${response.dua[i].mata_kuliah}')"`
                         :`onclick="updateRoom('${response.dua[i].id}','${response.dua[i].nama_ruang}','2')"`
                     }
                     class="${
@@ -444,7 +444,7 @@
                     response.tiga[i].verifikasi === "JADWAL"
                         ? `onclick="infoRoom('${response.tiga[i].id}','${response.tiga[i].kelas}','${response.tiga[i].program_studi}','${response.tiga[i].mata_kuliah}','${response.tiga[i].dosen}')"`
                         : response.tiga[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.tiga[i].id}','${response.tiga[i].kelas}','${response.tiga[i].program_studi}','${response.tiga[i].jenis_kegiatan}','${response.tiga[i].dosen}','${response.dua[i].mata_kuliah}')"`
+                        ? `onclick="infoBookingRoom('${response.tiga[i].id}','${response.tiga[i].kelas}','${response.tiga[i].program_studi}','${response.tiga[i].kegiatan}','${response.tiga[i].dosen}','${response.dua[i].mata_kuliah}')"`
                         : `onclick="updateRoom('${response.tiga[i].id}','${response.tiga[i].nama_ruang}','3')"`
                     }
                     class="${
@@ -465,7 +465,7 @@
                     response.empat[i].verifikasi === "JADWAL"
                         ? `onclick="infoRoom('${response.empat[i].id}','${response.empat[i].kelas}','${response.empat[i].program_studi}','${response.empat[i].mata_kuliah}','${response.empat[i].dosen}')"`
                         : response.empat[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.empat[i].id}','${response.empat[i].kelas}','${response.empat[i].program_studi}','${response.empat[i].jenis_kegiatan}','${response.empat[i].dosen}','${response.dua[i].mata_kuliah}')"`
+                        ? `onclick="infoBookingRoom('${response.empat[i].id}','${response.empat[i].kelas}','${response.empat[i].program_studi}','${response.empat[i].kegiatan}','${response.empat[i].dosen}','${response.dua[i].mata_kuliah}')"`
                         : `onclick="updateRoom('${response.empat[i].id}','${response.empat[i].nama_ruang}','4')"`
                     }
                     class="${
@@ -486,7 +486,7 @@
                     response.lima[i].verifikasi === "JADWAL"
                         ? `onclick="infoRoom('${response.lima[i].id}','${response.lima[i].kelas}','${response.lima[i].program_studi}','${response.lima[i].mata_kuliah}','${response.lima[i].dosen}')"`
                         : response.lima[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.lima[i].id}','${response.lima[i].kelas}','${response.lima[i].program_studi}','${response.lima[i].jenis_kegiatan}','${response.lima[i].dosen}','${response.dua[i].mata_kuliah}')"`
+                        ? `onclick="infoBookingRoom('${response.lima[i].id}','${response.lima[i].kelas}','${response.lima[i].program_studi}','${response.lima[i].kegiatan}','${response.lima[i].dosen}','${response.dua[i].mata_kuliah}')"`
                         : `onclick="updateRoom('${response.lima[i].id}','${response.lima[i].nama_ruang}','5')"`
                     }
                     class="${
@@ -507,7 +507,7 @@
                     response.enam[i].verifikasi === "JADWAL"
                         ? `onclick="infoRoom('${response.enam[i].id}','${response.enam[i].kelas}','${response.enam[i].program_studi}','${response.enam[i].mata_kuliah}','${response.enam[i].dosen}')"`
                         : response.enam[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.enam[i].id}','${response.enam[i].kelas}','${response.enam[i].program_studi}','${response.enam[i].jenis_kegiatan}','${response.enam[i].dosen}','${response.dua[i].mata_kuliah}')"`
+                        ? `onclick="infoBookingRoom('${response.enam[i].id}','${response.enam[i].kelas}','${response.enam[i].program_studi}','${response.enam[i].kegiatan}','${response.enam[i].dosen}','${response.dua[i].mata_kuliah}')"`
                         : `onclick="updateRoom('${response.enam[i].id}','${response.enam[i].nama_ruang}','6')"`
                     }
                     class="${

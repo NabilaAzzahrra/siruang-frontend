@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('report', ReportController::class);
     Route::patch('/sterilkan/{id}', [JadwalController::class, 'sterilkan'])->name('jadwal.sterilkan');
     Route::post('/importExcel', [JadwalController::class, 'importExcel'])->name('jadwal.importExcel');
+    Route::patch('/up/{id}', [JadwalController::class, 'up'])->name('jadwal.up');
 });
 Route::get('/target-halaman/{tgl}', [BookingController::class, 'targetHalaman'])->name('booking.targetHalaman');
 

@@ -27,11 +27,17 @@ class JadwalController extends Controller
         $konfigurasi = Konfigurasi::first();
         $idTahunAkademik = $konfigurasi->id_tahun_akademik;
         $semester = $konfigurasi->semester;
+        $sesi = Sesi::all();
+        $ruang = Ruang::all();
+        $hari = Hari::all();
         $data = JadwalRuangan::where('verifikasi', 'JADWAL')->where('id_tahun_akademik', $idTahunAkademik)->where('semester', $semester)->get();
         return view('pages.jadwalRuangan.index')->with([
             'data' => $data,
             'idTahunAkademik' => $idTahunAkademik,
-            'semester' => $semester
+            'semester' => $semester,
+            'sesi' => $sesi,
+            'ruang' => $ruang,
+            'hari' => $hari
         ]);
     }
 
@@ -199,6 +205,20 @@ class JadwalController extends Controller
         $data = JadwalRuangan::findOrFail($id);
         $data->delete();
         return back()->with('message_delete', 'Data Sudah dihapus');
+    }
+
+    public function up(Request $request, string $id)
+    {
+        $datas = JadwalRuangan::findOrFail($id);
+        $data = [
+            'id_sesi' => $request->input('id_sesi'),
+            'id_ruang' => $request->input('id_ruang'),
+            'id_hari' => $request->input('id_hari'),
+        ];
+        $datas->update($data);
+        return redirect()
+            ->route('jadwal.index')
+            ->with('message', 'Data Sudah diupdate');
     }
 
     public function importExcel(Request $request)
