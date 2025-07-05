@@ -27,6 +27,7 @@ class JadwalController extends Controller
         $konfigurasi = Konfigurasi::first();
         $idTahunAkademik = $konfigurasi->id_tahun_akademik;
         $semester = $konfigurasi->semester;
+        $idKonfigurasi = $konfigurasi->id;
         $sesi = Sesi::all();
         $ruang = Ruang::all();
         $hari = Hari::all();
@@ -34,6 +35,7 @@ class JadwalController extends Controller
         return view('pages.jadwalRuangan.index')->with([
             'data' => $data,
             'idTahunAkademik' => $idTahunAkademik,
+            'idKonfigurasi' => $idKonfigurasi,
             'semester' => $semester,
             'sesi' => $sesi,
             'ruang' => $ruang,
@@ -53,6 +55,8 @@ class JadwalController extends Controller
         $ruang = Ruang::all();
         $hari = Hari::all();
         $jenisKegiatan = JenisKegiatan::all();
+        $konfigurasi = Konfigurasi::first();
+        $idKonfigurasi = $konfigurasi->id;
         return view('pages.jadwalRuangan.create')->with([
             'mataKuliah' => $mataKuliah,
             'dosen' => $dosen,
@@ -61,6 +65,7 @@ class JadwalController extends Controller
             'ruang' => $ruang,
             'hari' => $hari,
             'jenisKegiatan' => $jenisKegiatan,
+            'idKonfigurasi' => $idKonfigurasi,
         ]);
     }
 
@@ -83,6 +88,7 @@ class JadwalController extends Controller
                 'id_tahun_akademik' => $id_tahun_akademik,
                 'id_hari' => $request->input('hari'),
                 'id_user' => Auth::user()->id,
+                'id_konfigurasi' => $request->input('id_konfigurasi'),
                 'semester' => $semester,
                 'status' => 'AKTIF',
                 'verifikasi' => 'JADWAL',
@@ -97,6 +103,7 @@ class JadwalController extends Controller
                 'id_tahun_akademik' => $id_tahun_akademik,
                 'id_hari' => $request->input('hari'),
                 'id_user' => Auth::user()->id,
+                'id_konfigurasi' => $request->input('id_konfigurasi'),
                 'semester' => $semester,
                 'status' => 'AKTIF',
                 'verifikasi' => 'JADWAL',
@@ -115,6 +122,7 @@ class JadwalController extends Controller
                 'id_tahun_akademik' => $id_tahun_akademik,
                 'id_hari' => $request->input('hari'),
                 'id_user' => Auth::user()->id,
+                'id_konfigurasi' => $request->input('id_konfigurasi'),
                 'semester' => $semester,
                 'status' => 'AKTIF',
                 'verifikasi' => 'JADWAL',

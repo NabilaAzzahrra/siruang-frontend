@@ -20,6 +20,7 @@ class JadwalRuangan extends Model
         'id_user',
         'semester',
         'id_jenis_kegiatan',
+        'id_konfigurasi',
         'no_hp',
         'tgl_pakai',
         'status',
@@ -60,5 +61,10 @@ class JadwalRuangan extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id');
+    }
+
+    public function konfigurasi()
+    {
+        return $this->belongsTo(Konfigurasi::class, 'id_konfigurasi', 'id');
     }
 }

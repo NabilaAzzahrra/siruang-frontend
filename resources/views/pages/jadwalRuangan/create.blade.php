@@ -19,6 +19,7 @@
                             <div class="p-4 rounded-xl">
                                 <div class="flex flex-col lg:flex-row gap-5">
                                     <div class="flex flex-col lg:flex-row w-full gap-5">
+                                        <input type="hidden" value="{{$idKonfigurasi}}" name="id_konfigurasi">
                                         <div class="lg:mb-5 w-full">
                                             <label for="hari"
                                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

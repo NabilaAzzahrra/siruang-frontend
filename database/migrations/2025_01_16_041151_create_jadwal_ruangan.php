@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('id_tahun_akademik');
             $table->integer('id_hari');
             $table->integer('id_user');
+            $table->integer('id_konfigurasi');
             $table->string('semester');
             $table->integer('id_jenis_kegiatan');
             $table->string('no_hp');

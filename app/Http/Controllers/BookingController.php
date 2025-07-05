@@ -13,6 +13,7 @@ use App\Models\Ruang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BookingController extends Controller
 {
@@ -40,6 +41,7 @@ class BookingController extends Controller
         $konfigurasi = Konfigurasi::first();
         $id_tahun_akademik = $konfigurasi->id_tahun_akademik;
         $semester = $konfigurasi->semester;
+        $idKonfigurasi = $konfigurasi->id;
 
         $tgl_pakai = date('l', strtotime($request->input('tgl_pakai')));
         $hari_english = strtoupper($tgl_pakai);
@@ -55,6 +57,7 @@ class BookingController extends Controller
             'id_tahun_akademik' => $id_tahun_akademik,
             'id_hari' => $idHari,
             'id_user' => Auth::user()->id,
+            'id_konfigurasi' => $idKonfigurasi,
             'semester' => $semester,
             'status' => 'AKTIF',
             'verifikasi' => 'BOOKED',
@@ -64,6 +67,31 @@ class BookingController extends Controller
         ];
 
         JadwalRuangan::create($data);
+
+        $tglPakai = $request->input('tgl_pakai');
+        $dataKegiatan = JenisKegiatan::where('id', $request->input('jenis_kegiatan'))->first();
+        $kegiatan = $dataKegiatan->kegiatan;
+
+        $dataDosen = Dosen::where('id', $request->input('dosen'))->first();
+        $dosen = $dataDosen->dosen;
+
+        $dataKelas = Kelas::where('id', $request->input('kelas'))->first();
+        $kelas = $dataKelas->kelas;
+
+        $dataRuang = Ruang::where('id', $request->input('ruang'))->first();
+        $ruang = $dataRuang->ruang;
+
+        //MESSAGE
+        Http::post('http://localhost:3000/send-wa', [
+            'phone' => '6287732016515',
+            'message' => "PEMESANAN RUANGAN\n\n" .
+                "RUANG    : " . $ruang . "\n" .
+                "KELAS    : " . $kelas . "\n" .
+                "DOSEN    : " . $dosen . "\n" .
+                "KEGIATAN : " . $kegiatan . "\n\n" .
+                "TANGGAL PAKAI : " . $tglPakai . "\n\n" .
+                "TERIMA KASIH"
+        ]);
 
         return back()->with('message_insert', 'Data Sudah ditambahkan');
     }

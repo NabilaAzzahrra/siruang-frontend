@@ -134,23 +134,23 @@
 
                         ${kegiatan === "PERGANTIAN" ?
                         `
-                                                                                                                                <tr>
-                                                                                                                                    <td class="font-bold text-red-500">Mata Kuliah</td>
-                                                                                                                                    <td class="pl-2 pr-2">:</td>
-                                                                                                                                    <td class="text-wrap">${mata_kuliah}</td>
-                                                                                                                                </tr>
-                                                                                                                                <tr>
-                                                                                                                                    <td class="font-bold text-red-500">Dosen</td>
-                                                                                                                                    <td class="pl-2 pr-2">:</td>
-                                                                                                                                    <td class="text-wrap">${dosen}</td>
-                                                                                                                                </tr>
-                                                                                                                                `
+                                                                                                                            <tr>
+                                                                                                                                <td class="font-bold text-red-500">Mata Kuliah</td>
+                                                                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                                                                <td class="text-wrap">${mata_kuliah}</td>
+                                                                                                                            </tr>
+                                                                                                                            <tr>
+                                                                                                                                <td class="font-bold text-red-500">Dosen</td>
+                                                                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                                                                <td class="text-wrap">${dosen}</td>
+                                                                                                                            </tr>
+                                                                                                                            `
                         :
                         `<tr>
-                                                                                                                                    <td class="font-bold text-red-500">Penanggung Jawab</td>
-                                                                                                                                    <td class="pl-2 pr-2">:</td>
-                                                                                                                                    <td class="text-wrap">${dosen}</td>
-                                                                                                                                </tr>`
+                                                                                                                                <td class="font-bold text-red-500">Penanggung Jawab</td>
+                                                                                                                                <td class="pl-2 pr-2">:</td>
+                                                                                                                                <td class="text-wrap">${dosen}</td>
+                                                                                                                            </tr>`
                         }
                     </table>
                 </div>
@@ -415,153 +415,155 @@
             console.log("not connected");
         });
 
-        socket.on("Sesis", (response) => {
-            console.log('sesi: ', response);
+        socket.on("Rooms", (response) => {
+            console.log(response);
 
-            let SesiContentSatu = "";
-            let SesiContentDua = "";
-            let SesiContentTiga = "";
-            let SesiContentEmpat = "";
-            let SesiContentLima = "";
-            let SesiContentEnam = "";
-            for (let i = 0; i < response.sesiSatu.length; i++) {
-                SesiContentSatu += `
+            let RoomContent = "";
+            let RoomContentDua = "";
+            let RoomContentTiga = "";
+            let RoomContentEmpat = "";
+            let RoomContentLima = "";
+            let RoomContentEnam = "";
+            for (let i = 0; i < response.satu.length; i++) {
+                RoomContent += `
                 <div
                     ${
-                    response.sesiSatu[i].verifikasi === "JADWAL"
-                        ? `onclick="infoRoom('${response.sesiSatu[i].id}','${response.sesiSatu[i].kelas}','${response.sesiSatu[i].program_studi}','${response.sesiSatu[i].mata_kuliah}','${response.sesiSatu[i].dosen}')"`
-                        : response.sesiSatu[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.sesiSatu[i].id}','${response.sesiSatu[i].kelas}','${response.sesiSatu[i].program_studi}','${response.sesiSatu[i].kegiatan}','${response.sesiSatu[i].dosen}','${response.sesiSatu[i].mata_kuliah}')"`
-                        : `onclick="updateRoom('${response.sesiSatu[i].id}','${response.sesiSatu[i].ruang}','1')"`
+                    response.satu[i].verifikasi === "JADWAL"
+                        ? `onclick="infoRoom('${response.satu[i].id}','${response.satu[i].kelas}','${response.satu[i].program_studi}','${response.satu[i].mata_kuliah}','${response.satu[i].dosen}')"`
+                        : response.satu[i].verifikasi === "BOOKED"
+                        ? `onclick="infoBookingRoom('${response.satu[i].id}','${response.satu[i].kelas}','${response.satu[i].program_studi}','${response.satu[i].kegiatan}','${response.satu[i].dosen}','${response.satu[i].mata_kuliah}')"`
+                        : `onclick="updateRoom('${response.satu[i].id}','${response.satu[i].nama_ruang}','1')"`
                     }
                     class="${
-                    response.sesiSatu[i].verifikasi === "JADWAL" && response.sesiSatu[i].status === "AKTIF"
+                    response.satu[i].verifikasi === "JADWAL" && response.satu[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
-                        : response.sesiSatu[i].verifikasi === "BOOKED" && response.sesiSatu[i].status === "AKTIF"
+                        : response.satu[i].verifikasi === "BOOKED" && response.satu[i].status === "AKTIF"
                         ? "bg-amber-400 text-black cursor-pointer"
                         : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
-                        response.sesiSatu[i].ruang
+                        response.satu[i].nama_ruang
                     }
                 </div>`;
             }
-            for (let i = 0; i < response.sesiDua.length; i++) {
-                SesiContentDua += `
+            for (let i = 0; i < response.dua.length; i++) {
+                RoomContentDua += `
                 <div
                     ${
-                    response.sesiDua[i].verifikasi === "JADWAL"
-                        ? `onclick="infoRoom('${response.sesiDua[i].id}','${response.sesiDua[i].kelas}','${response.sesiDua[i].program_studi}','${response.sesiDua[i].mata_kuliah}','${response.sesiDua[i].dosen}')"`
-                        : response.sesiDua[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.sesiDua[i].id}','${response.sesiDua[i].kelas}','${response.sesiDua[i].program_studi}','${response.sesiDua[i].kegiatan}','${response.sesiDua[i].dosen}','${response.sesiDua[i].mata_kuliah}')"`
-                        :`onclick="updateRoom('${response.sesiDua[i].id}','${response.sesiDua[i].ruang}','2')"`
+                    response.dua[i].verifikasi === "JADWAL"
+                        ? `onclick="infoRoom('${response.dua[i].id}','${response.dua[i].kelas}','${response.dua[i].program_studi}','${response.dua[i].mata_kuliah}','${response.dua[i].dosen}')"`
+                        : response.dua[i].verifikasi === "BOOKED"
+                        ? `onclick="infoBookingRoom('${response.dua[i].id}','${response.dua[i].kelas}','${response.dua[i].program_studi}','${response.dua[i].kegiatan}','${response.dua[i].dosen}','${response.dua[i].mata_kuliah}')"`
+                        :`onclick="updateRoom('${response.dua[i].id}','${response.dua[i].nama_ruang}','2')"`
                     }
                     class="${
-                    response.sesiDua[i].verifikasi === "JADWAL" && response.sesiDua[i].status === "AKTIF"
+                    response.dua[i].verifikasi === "JADWAL" && response.dua[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
-                        : response.sesiDua[i].verifikasi === "BOOKED" && response.sesiDua[i].status === "AKTIF"
+                        : response.dua[i].verifikasi === "BOOKED" && response.dua[i].status === "AKTIF"
                         ? "bg-amber-400 text-black cursor-pointer"
                         : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl  mb-4">${
-                        response.sesiDua[i].ruang
+                        response.dua[i].nama_ruang
                     }
                 </div>`;
             }
-            for (let i = 0; i < response.sesiTiga.length; i++) {
-                SesiContentTiga += `
+            for (let i = 0; i < response.tiga.length; i++) {
+                RoomContentTiga += `
                 <div
                     ${
-                    response.sesiTiga[i].verifikasi === "JADWAL"
-                        ? `onclick="infoRoom('${response.sesiTiga[i].id}','${response.sesiTiga[i].kelas}','${response.sesiTiga[i].program_studi}','${response.sesiTiga[i].mata_kuliah}','${response.sesiTiga[i].dosen}')"`
-                        : response.sesiTiga[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.sesiTiga[i].id}','${response.sesiTiga[i].kelas}','${response.sesiTiga[i].program_studi}','${response.sesiTiga[i].kegiatan}','${response.sesiTiga[i].dosen}','${response.sesiTiga[i].mata_kuliah}')"`
-                        : `onclick="updateRoom('${response.sesiTiga[i].id}','${response.sesiTiga[i].ruang}','3')"`
+                    response.tiga[i].verifikasi === "JADWAL"
+                        ? `onclick="infoRoom('${response.tiga[i].id}','${response.tiga[i].kelas}','${response.tiga[i].program_studi}','${response.tiga[i].mata_kuliah}','${response.tiga[i].dosen}')"`
+                        : response.tiga[i].verifikasi === "BOOKED"
+                        ? `onclick="infoBookingRoom('${response.tiga[i].id}','${response.tiga[i].kelas}','${response.tiga[i].program_studi}','${response.tiga[i].kegiatan}','${response.tiga[i].dosen}','${response.tiga[i].mata_kuliah}')"`
+                        : `onclick="updateRoom('${response.tiga[i].id}','${response.tiga[i].nama_ruang}','3')"`
                     }
                     class="${
-                    response.sesiTiga[i].verifikasi === "JADWAL" && response.sesiTiga[i].status === "AKTIF"
+                    response.tiga[i].verifikasi === "JADWAL" && response.tiga[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
-                        : response.sesiTiga[i].verifikasi === "BOOKED" && response.sesiTiga[i].status === "AKTIF"
+                        : response.tiga[i].verifikasi === "BOOKED" && response.tiga[i].status === "AKTIF"
                         ? "bg-amber-400 text-black cursor-pointer"
                         : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl  mb-4">${
-                        response.sesiTiga[i].ruang
+                        response.tiga[i].nama_ruang
                     }
                 </div>`;
             }
-            for (let i = 0; i < response.sesiEmpat.length; i++) {
-                SesiContentEmpat += `
+            for (let i = 0; i < response.empat.length; i++) {
+                RoomContentEmpat += `
                 <div
                     ${
-                    response.sesiEmpat[i].verifikasi === "JADWAL"
-                        ? `onclick="infoRoom('${response.sesiEmpat[i].id}','${response.sesiEmpat[i].kelas}','${response.sesiEmpat[i].program_studi}','${response.sesiEmpat[i].mata_kuliah}','${response.sesiEmpat[i].dosen}')"`
-                        : response.sesiEmpat[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.sesiEmpat[i].id}','${response.sesiEmpat[i].kelas}','${response.sesiEmpat[i].program_studi}','${response.sesiEmpat[i].kegiatan}','${response.sesiEmpat[i].dosen}','${response.sesiEmpat[i].mata_kuliah}')"`
-                        : `onclick="updateRoom('${response.sesiEmpat[i].id}','${response.sesiEmpat[i].ruang}','4')"`
+                    response.empat[i].verifikasi === "JADWAL"
+                        ? `onclick="infoRoom('${response.empat[i].id}','${response.empat[i].kelas}','${response.empat[i].program_studi}','${response.empat[i].mata_kuliah}','${response.empat[i].dosen}')"`
+                        : response.empat[i].verifikasi === "BOOKED"
+                        ? `onclick="infoBookingRoom('${response.empat[i].id}','${response.empat[i].kelas}','${response.empat[i].program_studi}','${response.empat[i].kegiatan}','${response.empat[i].dosen}','${response.empat[i].mata_kuliah}')"`
+                        : `onclick="updateRoom('${response.empat[i].id}','${response.empat[i].nama_ruang}','4')"`
                     }
                     class="${
-                    response.sesiEmpat[i].verifikasi === "JADWAL" && response.sesiEmpat[i].status === "AKTIF"
+                    response.empat[i].verifikasi === "JADWAL" && response.empat[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
-                        : response.sesiEmpat[i].verifikasi === "BOOKED" && response.sesiEmpat[i].status === "AKTIF"
+                        : response.empat[i].verifikasi === "BOOKED" && response.empat[i].status === "AKTIF"
                         ? "bg-amber-400 text-black cursor-pointer"
                         : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
-                    response.sesiEmpat[i].ruang
+                    response.empat[i].nama_ruang
                     }
                 </div>`;
             }
-            for (let i = 0; i < response.sesiLima.length; i++) {
-                SesiContentLima += `
+            for (let i = 0; i < response.lima.length; i++) {
+                RoomContentLima += `
                 <div
                     ${
-                    response.sesiLima[i].verifikasi === "JADWAL"
-                        ? `onclick="infoRoom('${response.sesiLima[i].id}','${response.sesiLima[i].kelas}','${response.sesiLima[i].program_studi}','${response.sesiLima[i].mata_kuliah}','${response.sesiLima[i].dosen}')"`
-                        : response.sesiLima[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.sesiLima[i].id}','${response.sesiLima[i].kelas}','${response.sesiLima[i].program_studi}','${response.sesiLima[i].kegiatan}','${response.sesiLima[i].dosen}','${response.sesiLima[i].mata_kuliah}')"`
-                        : `onclick="updateRoom('${response.sesiLima[i].id}','${response.sesiLima[i].ruang}','5')"`
+                    response.lima[i].verifikasi === "JADWAL"
+                        ? `onclick="infoRoom('${response.lima[i].id}','${response.lima[i].kelas}','${response.lima[i].program_studi}','${response.lima[i].mata_kuliah}','${response.lima[i].dosen}')"`
+                        : response.lima[i].verifikasi === "BOOKED"
+                        ? `onclick="infoBookingRoom('${response.lima[i].id}','${response.lima[i].kelas}','${response.lima[i].program_studi}','${response.lima[i].kegiatan}','${response.lima[i].dosen}','${response.lima[i].mata_kuliah}')"`
+                        : `onclick="updateRoom('${response.lima[i].id}','${response.lima[i].nama_ruang}','5')"`
                     }
                     class="${
-                    response.sesiLima[i].verifikasi === "JADWAL" && response.sesiLima[i].status === "AKTIF"
+                    response.lima[i].verifikasi === "JADWAL" && response.lima[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
-                        : response.sesiLima[i].verifikasi === "BOOKED" && response.sesiLima[i].status === "AKTIF"
+                        : response.lima[i].verifikasi === "BOOKED" && response.lima[i].status === "AKTIF"
                         ? "bg-amber-400 text-black cursor-pointer"
                         : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
-                    response.sesiLima[i].ruang
+                    response.lima[i].nama_ruang
                     }
                 </div>`;
             }
-            for (let i = 0; i < response.sesiEnam.length; i++) {
-                SesiContentEnam += `
+            for (let i = 0; i < response.enam.length; i++) {
+                RoomContentEnam += `
                 <div
                     ${
-                    response.sesiEnam[i].verifikasi === "JADWAL"
-                        ? `onclick="infoRoom('${response.sesiEnam[i].id}','${response.sesiEnam[i].kelas}','${response.sesiEnam[i].program_studi}','${response.sesiEnam[i].mata_kuliah}','${response.sesiEnam[i].dosen}')"`
-                        : response.sesiEnam[i].verifikasi === "BOOKED"
-                        ? `onclick="infoBookingRoom('${response.sesiEnam[i].id}','${response.sesiEnam[i].kelas}','${response.sesiEnam[i].program_studi}','${response.sesiEnam[i].kegiatan}','${response.sesiEnam[i].dosen}','${response.sesiEnam[i].mata_kuliah}')"`
-                        : `onclick="updateRoom('${response.sesiEnam[i].id}','${response.sesiEnam[i].ruang}','6')"`
+                    response.enam[i].verifikasi === "JADWAL"
+                        ? `onclick="infoRoom('${response.enam[i].id}','${response.enam[i].kelas}','${response.enam[i].program_studi}','${response.enam[i].mata_kuliah}','${response.enam[i].dosen}')"`
+                        : response.enam[i].verifikasi === "BOOKED"
+                        ? `onclick="infoBookingRoom('${response.enam[i].id}','${response.enam[i].kelas}','${response.enam[i].program_studi}','${response.enam[i].kegiatan}','${response.enam[i].dosen}','${response.enam[i].mata_kuliah}')"`
+                        : `onclick="updateRoom('${response.enam[i].id}','${response.enam[i].nama_ruang}','6')"`
                     }
                     class="${
-                    response.sesiEnam[i].verifikasi === "JADWAL" && response.sesiEnam[i].status === "AKTIF"
+                    response.enam[i].verifikasi === "JADWAL" && response.enam[i].status === "AKTIF"
                         ? "bg-red-500 text-white cursor-pointer"
-                        : response.sesiEnam[i].verifikasi === "BOOKED" && response.sesiEnam[i].status === "AKTIF"
+                        : response.enam[i].verifikasi === "BOOKED" && response.enam[i].status === "AKTIF"
                         ? "bg-amber-400 text-black cursor-pointer"
                         : "bg-emerald-400 text-black cursor-pointer"
                     } w-[65px] h-[65px] flex items-center justify-center font-extrabold text-xm rounded-xl mb-4">${
-                        response.sesiEnam[i].ruang
+                        response.enam[i].nama_ruang
                     }
                 </div>`;
             }
-            document.getElementById("rooms").innerHTML = SesiContentSatu;
-            document.getElementById("rooms-dua").innerHTML = SesiContentDua;
-            document.getElementById("rooms-tiga").innerHTML = SesiContentTiga;
-            document.getElementById("rooms-empat").innerHTML = SesiContentEmpat;
-            document.getElementById("rooms-lima").innerHTML = SesiContentLima;
-            document.getElementById("rooms-enam").innerHTML = SesiContentEnam;
+            document.getElementById("rooms").innerHTML = RoomContent;
+            document.getElementById("rooms-dua").innerHTML = RoomContentDua;
+            document.getElementById("rooms-tiga").innerHTML = RoomContentTiga;
+            document.getElementById("rooms-empat").innerHTML = RoomContentEmpat;
+            document.getElementById("rooms-lima").innerHTML = RoomContentLima;
+            document.getElementById("rooms-enam").innerHTML = RoomContentEnam;
+
+            console.log(response);
         });
 
-        function getSesi() {
-            socket.emit("getSesi", "sesi");
+        function getRooms() {
+            socket.emit("getRooms", "sopyan");
         }
-        getSesi();
+        getRooms();
     </script>
     <script>
         function redirectToPage(selectedDate) {
